@@ -15,7 +15,7 @@ function! FileHeaderAppender()
     while n < 10
         let line = getline(n)
         if line =~ '^\S*\s*modified : \s*.*$'
-            call UpdateHeader()
+            call UpdateHeader(1)
             return
         endif
         let n += 1
@@ -23,13 +23,15 @@ function! FileHeaderAppender()
     call AddHeader()
 endfunction
 " --- UpdateHeader {{{
-function! UpdateHeader()
+function! UpdateHeader(argv)
     normal ggj
     exe '/ *filename :/s@:.*$@\=": ".expand("%:t")@'
     normal j
     exe '/ *modified :/s@:.*$@\=strftime(": %Y-%m-%d %H:%M")@'
     exe 'noh'
-    echo "Header updated successfully."
+    if a:argv == 1
+        echo "Header updated successfully."
+    endif
 endfunction
 " }}}
 " ---- AddHeader {{{
@@ -115,6 +117,7 @@ function! AddHeader()
         call append(1,"# encoding: utf-8")
         call append(2,"")
     endif
+    call UpdateHeader(0)
     echo "Header added successfully."
 endfunction
 " }}}
