@@ -27,7 +27,7 @@ User Command:
  **`:Header`**  - You can use this to add or update the file header.
 
 ------------------------------------------------------------------
-Not that please always leave the original "filename" and "modified" lines unchanged in the first 10 rows if you configure the lines manually. Or the update feature won't function well.
+Note that please always leave the original "filename" and "modified" lines unchanged in the first 10 rows if you configure the lines manually. 
 
 Configure:
 ----------
